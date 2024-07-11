@@ -12,7 +12,16 @@ def about(request):
     return render(request, 'about.html')
 
 def services(request):
-    return render(request, 'services.html')
+    products = Product.objects.all()
+    total = 0
+    selected_products = []
+
+    if request.method == 'POST':
+        selected_ids = request.POST.getlist('products')
+        selected_products = Product.objects.filter(id__in=selected_ids)
+        total = sum(product.price for product in selected_products)
+    
+    return render(request, 'services.html', {'products': products, 'total': total, 'selected_products': selected_products})
 
 def contact(request):
     return render(request, 'contact.html')
@@ -52,8 +61,9 @@ def product_list(request):
     if request.method == 'POST':
         name = request.POST.get('name')
         price = request.POST.get('price')
-        Product.objects.create(name=name, price=price)
+        if name and price:  # Add a check to ensure both fields are filled
+            Product.objects.create(name=name, price=price)
         return redirect('product_list')
     
     products = Product.objects.all()
-    return render(request, 'Products.html', {'products': products})
+    return render(request, 'products.html', {'products': products})
