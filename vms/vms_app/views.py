@@ -2,6 +2,7 @@ from django.contrib.auth import login, authenticate, logout
 from django.shortcuts import render, redirect
 from .forms import SignUpForm
 from .models import Product
+from django.core.mail import send_mail
 
 # Create your views here.
 
@@ -20,8 +21,16 @@ def services(request):
         selected_ids = request.POST.getlist('products')
         selected_products = Product.objects.filter(id__in=selected_ids)
         total = sum(product.price for product in selected_products)
+
+        if request.POST.get('action') == 'send_email':
+            subject = 'Selected Products'
+            message = '\n'.join(f'{product.name} - ${product.price}' for product in selected_products)
+            recipient = 'benzoic09@hotmail.com'
+            send_mail(subject, message, 'benzoic09@hotmail.com', [recipient])
+            return render(request, 'email_sent.html')  # Create an email_sent.html template
     
-    return render(request, 'services.html', {'products': products, 'total': total, 'selected_products': selected_products})
+    return render(request, 'services.html', {'products': products, 'total': total,
+                                             'selected_products': selected_products})
 
 def contact(request):
     return render(request, 'contact.html')
