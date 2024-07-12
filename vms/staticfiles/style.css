@@ -43,6 +43,9 @@ textarea {
   font-family: sans-serif; }
 
 body {
+  /* background-color: #ff0; */
+  padding-left: 100px;
+  margin-left: 800px;
   margin: 0; }
 
 a {
@@ -418,6 +421,7 @@ form input[type="submit"] {
 /* feature */
 .feature-grid {
   *zoom: 1; }
+
   .feature-grid:after {
     content: " ";
     clear: both;

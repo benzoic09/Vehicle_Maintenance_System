@@ -43,6 +43,7 @@ textarea {
   font-family: sans-serif; }
 
 body {
+  padding-top: 80px;
   margin: 0; }
 
 a {
@@ -418,6 +419,7 @@ form input[type="submit"] {
 /* feature */
 .feature-grid {
   *zoom: 1; }
+
   .feature-grid:after {
     content: " ";
     clear: both;
@@ -1742,6 +1744,12 @@ address {
 /*
  * Header Styles
  */
+#site-content{
+  padding-left: 240px;
+  padding-right: 240px;
+  /* background-color: #ff0; */
+}
+
 .site-header {
   background-color: #1b1b1b;
   color: white; }
