@@ -30,7 +30,7 @@ audio:not([controls]) {
   display: none; }
 
 html {
-  background: #fff;
+  background: #3a3939;
   color: #000;
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%; }
@@ -43,9 +43,7 @@ textarea {
   font-family: sans-serif; }
 
 body {
-  /* background-color: #ff0; */
-  padding-left: 100px;
-  margin-left: 800px;
+  padding-top: 80px;
   margin: 0; }
 
 a {
@@ -224,7 +222,7 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: "Titillium Web", "Open Sans", sans-serif;
-  color: #383737;
+  color: #e6e2e2;
   margin-top: 0; }
 
 a {
@@ -1746,6 +1744,12 @@ address {
 /*
  * Header Styles
  */
+#site-content{
+  padding-left: 240px;
+  padding-right: 240px;
+  /* background-color: #ff0; */
+}
+
 .site-header {
   background-color: #1b1b1b;
   color: white; }
