@@ -30,7 +30,7 @@ audio:not([controls]) {
   display: none; }
 
 html {
-  background: #fff;
+  background: #3a3939;
   color: #000;
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%; }
@@ -222,7 +222,7 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: "Titillium Web", "Open Sans", sans-serif;
-  color: #383737;
+  color: #e6e2e2;
   margin-top: 0; }
 
 a {
