@@ -1,4 +1,5 @@
 from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from .forms import SignUpForm
 from .models import Product
@@ -12,6 +13,7 @@ def index(request):
 def about(request):
     return render(request, 'about.html')
 
+@login_required
 def services(request):
     products = Product.objects.all()
     total = 0
@@ -66,6 +68,7 @@ def logout_view(request):
     logout(request)
     return redirect('home')
 
+@login_required
 def product_list(request):
     if request.method == 'POST':
         name = request.POST.get('name')
