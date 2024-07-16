@@ -5,8 +5,6 @@ from .forms import SignUpForm
 from .models import Product
 from django.core.mail import send_mail
 
-# Create your views here.
-
 def index(request):
     return render(request, 'index.html')
 
@@ -27,12 +25,11 @@ def services(request):
         if request.POST.get('action') == 'send_email':
             subject = 'Selected Products'
             message = '\n'.join(f'{product.name} - ${product.price}' for product in selected_products)
-            recipient = 'benzoic09@hotmail.com'
+            recipient = request.user.email  # Send email to logged-in user
             send_mail(subject, message, 'benzoic09@hotmail.com', [recipient])
-            return render(request, 'email_sent.html')  # Create an email_sent.html template
+            return render(request, 'email_sent.html')  # Ensure email_sent.html exists
     
-    return render(request, 'services.html', {'products': products, 'total': total,
-                                             'selected_products': selected_products})
+    return render(request, 'services.html', {'products': products, 'total': total, 'selected_products': selected_products})
 
 def contact(request):
     return render(request, 'contact.html')
@@ -58,7 +55,7 @@ def login_view(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('services')
+            return redirect('services')  # Redirect to services after login
         else:
             # Return an 'invalid login' error message.
             pass

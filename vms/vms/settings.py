@@ -135,3 +135,5 @@ EMAIL_USE_TLS = True  # Use TLS
 EMAIL_HOST_USER = 'your-email@example.com'  # Your email address
 EMAIL_HOST_PASSWORD = 'your-email-password'  # Your email password
 
+LOGIN_URL = 'login'
+
