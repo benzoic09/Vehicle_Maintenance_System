@@ -31,10 +31,15 @@
                     <button type="button" class="menu-toggle"><i class="fa fa-bars"></i></button>
                     <ul class="menu">
                         <li class="menu-item"><a href="{% url 'index' %}">Home</a></li>
-                        <li class="menu-item"><a href="{% url 'login' %}">Login</a></li>
+                        <!-- <li class="menu-item"><a href="{% url 'login' %}">Login</a></li> -->
                         <li class="menu-item"><a href="{% url 'product_list' %}">Products</a></li>
                         <li class="menu-item"><a href="{% url 'services' %}">Services</a></li>
                         <li class="menu-item"><a href="{% url 'services' %}">Contact</a></li>
+                        {% if user.is_authenticated %}
+                            <li class="menu-item"><a href="{% url 'logout' %}">Logout</a></li>
+                            {% else %}
+                            <li class="menu-item"><a href="{% url 'login' %}">Login</a></li>
+                            {% endif %}     
                     </ul>
                 </nav>
                 <nav class="mobile-navigation"></nav>
