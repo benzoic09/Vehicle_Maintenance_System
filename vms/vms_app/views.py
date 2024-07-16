@@ -80,7 +80,7 @@ def product_list(request):
 
 @login_required
 def edit_product(request, id):
-    product = get_object_or_404(product, id=id)
+    product = get_object_or_404(Product, id=id)
     if request.method == 'POST':
         product.name = request.POST.get('name')
         product.price = request.POST.get('price')
