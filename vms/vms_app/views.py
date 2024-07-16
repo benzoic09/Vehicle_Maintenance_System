@@ -1,6 +1,6 @@
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import SignUpForm
 from .models import Product
 from django.core.mail import send_mail
@@ -76,3 +76,23 @@ def product_list(request):
     
     products = Product.objects.all()
     return render(request, 'products.html', {'products': products})
+
+
+@login_required
+def edit_product(request, id):
+    product = get_object_or_404(product, id=id)
+    if request.method == 'POST':
+        product.name = request.POST.get('name')
+        product.price = request.POST.get('price')
+        product.save()
+        return redirect('product_list')
+    return render (request, 'edit_product.html', {product: product})
+
+
+@login_required
+def delete_product(request, id):
+    product = get_object_or_404(Product, id=id)
+    if request.method == 'POST':
+        product.delete()
+        return redirect('product_list')
+    return render(request, 'delete_product.html', {'product': product})
