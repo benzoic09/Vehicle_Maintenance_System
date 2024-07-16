@@ -25,10 +25,11 @@ def services(request):
         if request.POST.get('action') == 'send_email':
             subject = 'Selected Products'
             message = '\n'.join(f'{product.name} - ${product.price}' for product in selected_products)
-            recipient = request.user.email  # Send email to logged-in user
-            send_mail(subject, message, 'benzoic09@hotmail.com', [recipient])
+            recipient = request.user.email  # Send email to the logged-in user
+            # recipient = 'benzoic09@hotmail.com'
+            send_mail(subject, message, 'gichimumbugua@gmail.com', [recipient])
             return render(request, 'email_sent.html')  # Ensure email_sent.html exists
-    
+
     return render(request, 'services.html', {'products': products, 'total': total, 'selected_products': selected_products})
 
 def contact(request):

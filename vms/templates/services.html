@@ -27,8 +27,7 @@
                         {% endfor %}
                     </tbody>
                 </table>
-                <button type="submit" name="action" value="calculate_total">Calculate Total</button>
-                <button type="submit" name="action" value="send_email">Send Email</button>
+                <button type="submit" name="action" value="calculate_total">Add to cart</button>
             </form>
             <h2>Selected Products</h2>
             <ul>
@@ -38,7 +37,7 @@
             </ul>
             <h3>Total: ${{ total }}</h3>
         </div>
-
+        <button type="submit" name="action" value="send_email">checkout/Email</button>
         {% endblock %}
 
 
