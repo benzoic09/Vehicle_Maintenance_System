@@ -22,7 +22,7 @@
 <body class="header-collapse">
     <div id="site-content">
         <header class="site-header">
-            <div class="container">
+            <div class="container"> 
                 <a id="branding" href="{% url 'index' %}">
                     <img src="{% static 'images/logo.png' %}" alt="Company Logo" class="logo">
                     <h1 class="site-title">Vehicle  Maintaince  System </h1>
@@ -34,7 +34,7 @@
                         <!-- <li class="menu-item"><a href="{% url 'login' %}">Login</a></li> -->
                         <li class="menu-item"><a href="{% url 'product_list' %}">Products</a></li>
                         <li class="menu-item"><a href="{% url 'services' %}">Services</a></li>
-                        <li class="menu-item"><a href="{% url 'services' %}">Contact</a></li>
+                        <!-- <li class="menu-item"><a href="{% url 'services' %}">Contact</a></li> -->
                         {% if user.is_authenticated %}
                             <li class="menu-item"><a href="{% url 'logout' %}">Logout</a></li>
                             {% else %}
