@@ -23,10 +23,9 @@ def services(request):
         total = sum(product.price for product in selected_products)
 
         if request.POST.get('action') == 'send_email':
-            subject = 'Selected Products'
+            subject = 'Your Invoice for Selected Products'
             message = '\n'.join(f'{product.name} - ${product.price}' for product in selected_products)
             recipient = request.user.email  # Send email to the logged-in user
-            # recipient = 'benzoic09@hotmail.com'
             send_mail(subject, message, 'gichimumbugua@gmail.com', [recipient])
             return render(request, 'email_sent.html')  # Ensure email_sent.html exists
 
@@ -71,7 +70,7 @@ def product_list(request):
     if request.method == 'POST':
         form = ProductForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save
+            form.save()
             return redirect('product_list')
     else:
         form = ProductForm()
