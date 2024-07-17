@@ -1,7 +1,7 @@
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import SignUpForm
+from .forms import SignUpForm, ProductForm
 from .models import Product
 from django.core.mail import send_mail
 
@@ -69,25 +69,28 @@ def logout_view(request):
 @login_required
 def product_list(request):
     if request.method == 'POST':
-        name = request.POST.get('name')
-        price = request.POST.get('price')
-        if name and price:  # Add a check to ensure both fields are filled
-            Product.objects.create(name=name, price=price)
-        return redirect('product_list')
+        form = ProductForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save
+            return redirect('product_list')
+    else:
+        form = ProductForm()
     
     products = Product.objects.all()
-    return render(request, 'products.html', {'products': products})
+    return render(request, 'products.html', {'products': products, 'form': form})
 
 
 @login_required
 def edit_product(request, id):
     product = get_object_or_404(Product, id=id)
     if request.method == 'POST':
-        product.name = request.POST.get('name')
-        product.price = request.POST.get('price')
-        product.save()
-        return redirect('product_list')
-    return render (request, 'edit_product.html', {product: product})
+        form = ProductForm(request.POST, request.FILES, instance=product)
+        if form.is_valid():
+            form.save()
+            return redirect('product_list')
+    else:
+        form = ProductForm(instance=product)
+    return render(request, 'edit_product.html', {'form': form})
 
 
 @login_required
