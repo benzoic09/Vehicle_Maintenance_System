@@ -28,7 +28,7 @@
                             {% endif %}
                         </td>
                         <td>{{ product.name }}</td>
-                        <td>${{ product.price }}</td>
+                        <td>KES{{ product.price }}</td>
                     </tr>
                 {% endfor %}
             </tbody>
@@ -42,7 +42,7 @@
                     <li>{{ product.name }} - ${{ product.price }}</li>
                 {% endfor %}
             </ul>
-            <h3>Total: ${{ total }}</h3>
+            <h3>Total: KES{{ total }}</h3>
             <button type="submit" name="action" value="send_email">Checkout/Email</button>
         {% endif %}
     </form>
