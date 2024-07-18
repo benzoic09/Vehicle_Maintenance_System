@@ -15,6 +15,12 @@ class ProductForm(forms.ModelForm):
         fields = ['name', 'price', 'image']
 
 class Appointmentform(forms.ModelForm):
+    date = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
+
     class Meta:
         model = Appointment
-        fields  = ['service', 'vehicle', 'date','status']
+        fields  = ['service', 'vehicle', 'date']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['date'].widget = forms.DateInput(attrs={'type': 'date'})
