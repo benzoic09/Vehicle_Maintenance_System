@@ -1,8 +1,8 @@
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import SignUpForm, ProductForm
-from .models import Product
+from .forms import SignUpForm, ProductForm, Appointmentform
+from .models import Product, Appointment
 from django.core.mail import send_mail
 
 def index(request):
@@ -99,3 +99,24 @@ def delete_product(request, id):
         product.delete()
         return redirect('product_list')
     return render(request, 'delete_product.html', {'product': product})
+
+
+@login_required
+def schedule_appointment(request):
+    if request.method =='POST':
+        form = Appointmentform(request.POST)
+        if form.is_valid():
+            appointment  = form.save(commit=False)
+            appointment.user = request.user
+            appointment.status = 'scheduled'
+            appointment.save()
+            return redirect('appointment_list')
+        else:
+            form = Appointmentform()
+        return render(request, 'schedule_appointment.html', {'form': form})
+
+
+@login_required
+def appointment_list(request):
+    appointments = Appointment.objects.filter(user=request.user)
+    return render(request, 'appointment_list.html', {'appointments': appointments})

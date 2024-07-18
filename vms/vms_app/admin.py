@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import CustomUser, Product
+from .models import CustomUser, Product, Appointment
 
 # Register your models here.
 admin.site.register(CustomUser, UserAdmin)
@@ -19,3 +19,4 @@ class ProductAdmin(admin.ModelAdmin):
     image_preview.short_description = 'Image Preview'
 
 admin.site.register(Product, ProductAdmin)
+admin.site.register(Appointment)

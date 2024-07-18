@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from .models import CustomUser, Product
+from .models import CustomUser, Product, Appointment
 
 class SignUpForm(UserCreationForm):
     email = forms.EmailField(max_length=254, help_text='Required. Inform a valid email address.')
@@ -13,3 +13,8 @@ class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
         fields = ['name', 'price', 'image']
+
+class Appointmentform(forms.ModelForm):
+    class Meta:
+        model = Appointment
+        fields  = ['service', 'vehicle', 'date','status']
