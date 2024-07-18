@@ -111,9 +111,9 @@ def schedule_appointment(request):
             appointment.status = 'scheduled'
             appointment.save()
             return redirect('appointment_list')
-        else:
-            form = Appointmentform()
-        return render(request, 'schedule_appointment.html', {'form': form})
+    else:
+        form = Appointmentform()
+    return render(request, 'schedule_appointment.html', {'form': form})
 
 
 @login_required
