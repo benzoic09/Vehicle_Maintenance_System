@@ -1,9 +1,12 @@
 from django.contrib.auth import login, authenticate, logout
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import SignUpForm, ProductForm, Appointmentform
 from .models import Product, Appointment
 from django.core.mail import send_mail
+
+def is_admin_or_superuser(user):
+    return user.is_authenticated and (user.is_admin or user.is_staff or user.is_superuser)
 
 def index(request):
     return render(request, 'index.html')
@@ -78,7 +81,7 @@ def product_list(request):
     products = Product.objects.all()
     return render(request, 'products.html', {'products': products, 'form': form})
 
-
+@user_passes_test(is_admin_or_superuser)
 @login_required
 def edit_product(request, id):
     product = get_object_or_404(Product, id=id)
@@ -91,7 +94,7 @@ def edit_product(request, id):
         form = ProductForm(instance=product)
     return render(request, 'edit_product.html', {'form': form})
 
-
+@user_passes_test(is_admin_or_superuser)
 @login_required
 def delete_product(request, id):
     product = get_object_or_404(Product, id=id)
@@ -110,13 +113,8 @@ def schedule_appointment(request):
             appointment.user = request.user
             appointment.status = 'scheduled'
             appointment.save()
-            return redirect('appointment_list')
+            return redirect('schedule_appointment')
     else:
         form = Appointmentform()
-    return render(request, 'schedule_appointment.html', {'form': form})
-
-
-@login_required
-def appointment_list(request):
-    appointments = Appointment.objects.filter(user=request.user)
-    return render(request, 'appointment_list.html', {'appointments': appointments})
+        appointments = Appointment.objects.filter(user=request.user)
+    return render(request, 'appointment_list.html', {'appointments': appointments, 'form': form})

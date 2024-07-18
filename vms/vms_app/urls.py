@@ -20,5 +20,4 @@ urlpatterns = [
 
     # Appointments 
     path('schedule/', views.schedule_appointment, name='schedule_appointment'),
-    path('appointments/', views.appointment_list, name='appointment_list'),
 ]
