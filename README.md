@@ -42,3 +42,44 @@ Welcome to the Webstack Portfolio Project! This project is a personal portfolio 
    git clone https://github.com/benzoic09/Vehicle_Maintenance_System.git
    cd your-repo-name
 
+2. **Create a virtual environment:**
+
+    ```bash
+    python -m venv venvCreate a virtual environment:
+
+3. **Activate the virtual environment**
+    ``` bash
+    python -m venv venv
+    source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+
+## Apply migrations and run the development server:
+1. **Applying migrations:**
+    ```bash
+    python manage.py migrate
+
+2. **Run the development server:**
+    ```bash
+    python manage.py runserver
+
+## Usage:
+
+1. **Creating a superuser:**
+    ```bash
+    python manage.py createsuperuser
+    Follow the prompts to create an admin user for accessing the Django admin interface.
+
+## Screenshots
+
+
+## Contributing
+Contributions are welcome! Please fork the repository and create a pull request with your changes. Make sure to follow the code style and write tests if applicable.
+
+## License
+This project is licensed under the MIT License. See the LICENSE file for more details.
+
+## Contact
+Feel free to reach out if you have any questions or suggestions!
+
+Email: mbuguagichimu@gmial.com
+Email: benzoic09@gmail.com
+   
