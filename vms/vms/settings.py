@@ -128,13 +128,13 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'vms_app.CustomUser'
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'  # Your email provider's SMTP server
-EMAIL_PORT = 587  # SMTP port
-EMAIL_USE_TLS = True  # Use TLS
-EMAIL_HOST_USER = 'gichimumbugua@gmail.com'  # Your email address
-EMAIL_HOST_PASSWORD = '99489948'  # Your email password
-DEFAULT_FROM_EMAIL = 'gichimumbugua@gmail.com'
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp.gmail.com'  # Your email provider's SMTP server
+# EMAIL_PORT = 587  # SMTP port
+# EMAIL_USE_TLS = True  # Use TLS
+# EMAIL_HOST_USER = 'gichimumbugua@gmail.com'  # Your email address
+# EMAIL_HOST_PASSWORD = '99489948'  # Your email password
+# DEFAULT_FROM_EMAIL = 'gichimumbugua@gmail.com'
 
 LOGIN_URL = 'login'
 
@@ -142,6 +142,6 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 
-# EMAIL_BACKEND = 'sendgrid_backend.SendgridBackend'
-# SENDGRID_API_KEY = 'your_sendgrid_api_key_here'
-# DEFAULT_FROM_EMAIL = 'your_verified_sender_email@example.com'
+EMAIL_BACKEND = 'sendgrid_backend.SendgridBackend'
+SENDGRID_API_KEY = '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'
+DEFAULT_FROM_EMAIL = 'benzoic09@hotmail.com'

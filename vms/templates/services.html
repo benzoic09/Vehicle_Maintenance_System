@@ -39,18 +39,25 @@
                 {% endfor %}
             </tbody>
         </table>
-        <button type="submit" name="action" value="calculate_total">Add to cart</button>
-        
-        {% if selected_products %}
-            <h2>Selected Products</h2>
-            <ul>
-                {% for product in selected_products %}
-                    <li>{{ product.name }} - ${{ product.price }}</li>
-                {% endfor %}
-            </ul>
-            <h3>Total: KES{{ total }}</h3>
-            <button type="submit" name="action" value="send_email">Checkout/Email</button>
-        {% endif %}
+        <button type="submit">Add to Cart</button>
     </form>
+    
+    {% if selected_products %}
+        <h2>Selected Products</h2>
+        <ul>
+            {% for product in selected_products %}
+                <li>{{ product.name }} - KES{{ product.price }}</li>
+            {% endfor %}
+        </ul>
+        <h3>Total: KES{{ total }}</h3>
+        <form method="post">
+            {% csrf_token %}
+            {% for product in selected_products %}
+                <input type="hidden" name="products" value="{{ product.id }}">
+            {% endfor %}
+            <input type="hidden" name="action" value="send_email">
+            <button type="submit">Checkout/Email Invoice</button>
+        </form>
+    {% endif %}
 </div>
 {% endblock %}

@@ -8,9 +8,11 @@
     <p>The following products were sent to your email:</p>
     <ul>
         {% for product in selected_products %}
-            <li>{{ product.name }} - ${{ product.price }}</li>
+            <li>{{ product.name }} - KES{{ product.price }}</li>
         {% endfor %}
     </ul>
-    <h3>Total: ${{ total }}</h3>
+    <h3>Total: KES{{ total }}</h3>
+    <p>Please check your email for the invoice details.</p>
+    <a href="{% url 'services' %}">Back to Services</a>
 </div>
 {% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Email Error{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Email Sending Failed</h2>
+    <p>We're sorry, but there was an error while trying to send your email. Here are the details:</p>
+    
+    {% if error_message %}
+        <div class="error-details">
+            <h3>Error Details:</h3>
+            <p>{{ error_message }}</p>
+        </div>
+    {% endif %}
+    
+    <h3>Products you attempted to send:</h3>
+    <ul>
+        {% for product in selected_products %}
+            <li>{{ product.name }} - KES{{ product.price }}</li>
+        {% endfor %}
+    </ul>
+    <h3>Total: KES{{ total }}</h3>
+    
+    <p>Please try again later or contact our support team if the problem persists.</p>
+    
+    <a href="{% url 'services' %}" class="btn btn-primary">Back to Services</a>
+    <a href="{% url 'index' %}" class="btn btn-secondary">Contact Support</a>
+</div>
+{% endblock %}

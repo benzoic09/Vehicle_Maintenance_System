@@ -4,6 +4,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .forms import SignUpForm, ProductForm, Appointmentform
 from .models import Product, Appointment
 from django.core.mail import send_mail
+from django.conf import settings
+
 
 def is_admin_or_superuser(user):
     return user.is_authenticated and (user.is_admin or user.is_staff or user.is_superuser)
@@ -29,15 +31,42 @@ def services(request):
         selected_ids = request.POST.getlist('products')
         selected_products = Product.objects.filter(id__in=selected_ids)
         total = sum(product.price for product in selected_products)
-
+        
         if request.POST.get('action') == 'send_email':
             subject = 'Your Invoice for Selected Products'
-            message = '\n'.join(f'{product.name} - ${product.price}' for product in selected_products)
+            message = "Here's your invoice:\n\n"
+            message += '\n'.join(f'{product.name} - KES{product.price}' for product in selected_products)
+            message += f'\n\nTotal: KES{total}'
             recipient = request.user.email  # Send email to the logged-in user
-            send_mail(subject, message, 'gichimumbugua@gmail.com', [recipient])
-            return render(request, 'email_sent.html')  # Ensure email_sent.html exists
 
-    return render(request, 'services.html', {'products': products, 'total': total, 'selected_products': selected_products})
+            try:
+                send_mail(
+                    subject,
+                    message,
+                    settings.DEFAULT_FROM_EMAIL,
+                    [recipient],
+                    fail_silently=False,
+                )
+                return render(request, 'email_sent.html', {
+                    'selected_products': selected_products,
+                    'total': total
+                })
+            except Exception as e:
+                # Log the error and show an error message to the user
+                error_message = str(e)
+                print(f"Error sending email: {error_message}")
+                return render(request, 'email_error.html', {
+                    'error_message': error_message,
+                    'selected_products': selected_products,
+                    'total': total
+                })
+
+    context = {
+        'products': products,
+        'total': total,
+        'selected_products': selected_products
+    }
+    return render(request, 'services.html', context)
 
 def contact(request):
     return render(request, 'contact.html')
