@@ -144,4 +144,4 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 # EMAIL_BACKEND = 'sendgrid_backend.SendgridBackend'
 # SENDGRID_API_KEY = 'your_sendgrid_api_key_here'
-# DEFAULT_FROM_EMAIL = 'your_verified_sender_email@example.com'
+# DEFAULT_FROM_EMAIL = 'benzoic09@hotmail.com'
