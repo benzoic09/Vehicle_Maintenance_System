@@ -143,5 +143,5 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 
 EMAIL_BACKEND = 'sendgrid_backend.SendgridBackend'
-SENDGRID_API_KEY = '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'
+SENDGRID_API_KEY = 'api'
 DEFAULT_FROM_EMAIL = 'benzoic09@hotmail.com'
