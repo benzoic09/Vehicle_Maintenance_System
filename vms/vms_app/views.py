@@ -16,7 +16,12 @@ def about(request):
 
 @login_required
 def services(request):
-    products = Product.objects.all()
+    query = request.GET.get('q')
+    if query:
+        products = Product.objects.filter(name__icontains=query)
+    else:
+        products = Product.objects.all()
+
     total = 0
     selected_products = []
 
@@ -70,6 +75,12 @@ def logout_view(request):
 
 @login_required
 def product_list(request):
+    query = request.GET.get('q')
+    if query:
+        products = Product.objects.filter(name__icontains=query)
+    else:
+        products = Product.objects.all()
+
     if request.method == 'POST':
         form = ProductForm(request.POST, request.FILES)
         if form.is_valid():
@@ -78,7 +89,7 @@ def product_list(request):
     else:
         form = ProductForm()
     
-    products = Product.objects.all()
+    # products = Product.objects.all()
     return render(request, 'products.html', {'products': products, 'form': form})
 
 @user_passes_test(is_admin_or_superuser)

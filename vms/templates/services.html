@@ -5,6 +5,12 @@
 {% block content %}
 <div class="table_temp">
     <h2>Services</h2>
+
+    <form method="get" action="{% url 'services' %}">
+        <input type="text" name="q" placeholder="Search services...">
+        <button type="submit">Search</button>
+    </form>
+
     <form method="post">
         {% csrf_token %}
         <table>
