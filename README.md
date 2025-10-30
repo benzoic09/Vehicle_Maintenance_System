@@ -15,6 +15,20 @@
 
 Welcome to the Webstack Portfolio Project! This project is a personal portfolio website to showcase your skills, projects, and experiences. It is built using modern web technologies to provide a responsive and interactive user experience.
 
+Vehicle Maintenance System, an intuitive and robust web application designed to streamline and simplify the upkeep of your vehicle fleet or individual vehicles. Built with modern web technologies, this system empowers users to track maintenance schedules, record service histories, set reminders, and gain clear insights into vehicle health — all in one place.
+
+Whether you’re managing multiple vehicles in a business setting or just looking to stay on top of your personal car’s maintenance, Vehicle Maintenance System offers an organized, user-friendly interface to help you:
+
+Monitor upcoming service tasks (oil changes, tyre rotations, fluid checks)
+
+Log completed maintenance and view detailed history
+
+Set custom alerts and notifications so nothing gets missed
+
+Gain visibility into maintenance trends and cost over time
+
+Operate across devices with a responsive design
+
 ## Features
 
 - **Responsive Design:** Adapts to different screen sizes and devices.
